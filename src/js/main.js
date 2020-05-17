@@ -1,2 +1,2 @@
 import { Accordion } from './accordion.min.js'
-const accordion = new Accordion('.js-accordionTrigger', 'accordion--selected');
+document.querySelectorAll('.js-accordion').forEach((instance) => new Accordion(instance))

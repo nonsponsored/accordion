@@ -26,62 +26,90 @@ p {
   margin: 0 auto;
   max-width: 768px;
   padding: 0; }
-  .accordion dt {
-    cursor: pointer;
-    line-height: 1.4;
-    padding: 20px 0; }
-    .accordion dt:not(:first-child) {
-      border-top: 1px solid var(--border-color); }
-  .accordion button {
-    background: none;
-    border: 0;
-    cursor: inherit;
+
+/* Title */
+.accordion__title {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin: 0;
+  padding: 20px 0; }
+  .accordion__title:not(:first-child) {
+    border-top: 1px solid var(--border-color); }
+
+/* Button */
+.accordion__button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: inherit;
+  margin: 0;
+  height: 100%;
+  line-height: inherit;
+  padding: 0 30px 0 0;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  /* State : Active */
+  /* Icon */ }
+  .accordion__button:active {
+    color: inherit; }
+  .accordion__button::after {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpolyline fill='none' stroke='%23777' stroke-width='2' points='13 1 7 7 1 1'/%3E%3C/svg%3E") center center no-repeat;
+    content: '';
+    display: flex;
+    color: currentcolor;
     font-size: inherit;
-    margin: 0;
-    line-height: inherit;
-    padding: 0 30px 0 0;
-    position: relative;
-    text-align: left;
-    width: 100%; }
-    .accordion button:active {
-      color: inherit; }
-    .accordion button::after {
-      background: url(../img/icon-arrow-down.svg) 0 0 no-repeat;
-      content: '';
-      display: flex;
-      color: currentcolor;
-      font-size: inherit;
-      height: 9px;
-      position: absolute;
-      right: 0;
-      top: 8px;
-      transition: transform var(--timing) var(--easing);
-      transform: rotate(0deg);
-      width: 14px; }
-  .accordion dd {
-    background-color: #f5f5f5;
-    height: 0;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity var(--timing) var(--easing); }
-  .accordion--selected button::after {
+    height: 14px;
+    position: absolute;
+    right: 0;
+    top: 1.5em;
+    transition: transform var(--timing) var(--easing);
+    transform: rotate(0deg);
+    width: 14px; }
+  .accordion__button[aria-expanded='true']::after {
     transform: rotate(-180deg); }
-  .accordion--selected + dd {
-    height: auto;
-    opacity: 1;
-    overflow-y: visible;
+
+/* State : Init */
+.accordion--init {
+  /* Title */
+  /* Button */ }
+  .accordion--init .accordion__title {
+    padding: 0; }
+  .accordion--init .accordion__button {
+    padding-bottom: 20px;
+    padding-top: 20px; }
+
+/* Content */
+.accordion__content {
+  background-color: #f5f5f5;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: opacity var(--timing) var(--easing); }
+  .accordion__content > :first-child {
     padding-top: 30px; }
 
-@media all and (min-width: 768px) {
-  .accordion button {
-    font-size: 20px; }
-    .accordion button::after {
-      top: 10px; } }
+/* State : Closed */
+.accordion__content[hidden] {
+  height: 0;
+  opacity: 0; }
 
+/* State : Open */
+.accordion__content:not([hidden]) {
+  height: auto;
+  opacity: 1; }
+
+/* Medium Screen */
+@media all and (min-width: 768px) {
+  /* Title */
+  .accordion__title {
+    font-size: 20px; } }
+
+/* Large Screen */
 @media all and (min-width: 1024px) {
-  .accordion dd {
+  /* Content */
+  .accordion__content {
     padding-left: 30px;
     padding-right: 30px; } }
