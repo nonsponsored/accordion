@@ -37,22 +37,28 @@ export class Accordion {
 			// Replace title text with button
 			accordionTitle.textContent = ''
 			accordionTitle.appendChild(button)
+		})
 		
-			// Assign the button
-			const accordionButton = accordionTitle.querySelector('button')
-			
-			// Listen for click
-			accordionButton.addEventListener('click', (e) => {
+		// Set Up Event Listeners
+		this._addEventListeners()
+	}
+	
+	// Event Listeners
+	_addEventListeners() {
+		this.accordion.addEventListener('click', (e) => {
+			if (e.target.matches('.accordion__button')) {
+				// Find the next content container
+				let accordionContent = e.target.parentNode.nextElementSibling
 				// Check aria state
-				let aria = accordionButton.getAttribute('aria-expanded');
+				let aria = e.target.getAttribute('aria-expanded');
 				aria = aria == 'true' ? 'false' : 'true'
 				// Update aria state on button
-				accordionButton.setAttribute('aria-expanded', aria)
+				e.target.setAttribute('aria-expanded', aria)
 				// Update aria state on content
 				accordionContent.setAttribute('aria-expanded', aria)
 				// Toggle visibility of content
 				accordionContent.hidden = !accordionContent.hidden
-			})
+			}
 		})
 	}
 }
