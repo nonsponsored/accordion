@@ -21,7 +21,6 @@ export class Accordion {
 		this.title.forEach(function(accordionTitle) {
 			// Find content container and add aria
 			const accordionContent = accordionTitle.nextElementSibling
-			accordionContent.setAttribute('aria-expanded','false')
 			accordionContent.setAttribute('hidden','')
 		
 			// Get title text
@@ -54,8 +53,6 @@ export class Accordion {
 				aria = aria == 'true' ? 'false' : 'true'
 				// Update aria state on button
 				e.target.setAttribute('aria-expanded', aria)
-				// Update aria state on content
-				accordionContent.setAttribute('aria-expanded', aria)
 				// Toggle visibility of content
 				accordionContent.hidden = !accordionContent.hidden
 			}
